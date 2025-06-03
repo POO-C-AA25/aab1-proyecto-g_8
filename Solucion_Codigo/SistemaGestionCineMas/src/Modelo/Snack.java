@@ -1,10 +1,14 @@
-
 package Modelo;
 
 public class Snack {
+
     private String nombre;
     private double precio;
     private int cantidad;
+
+    public Snack() {
+
+    }
 
     public Snack(String nombre, double precio, int cantidad) {
         this.nombre = nombre;
@@ -28,4 +32,3 @@ public class Snack {
         return cantidad;
     }
 }
-

@@ -1,3 +1,4 @@
+
 package Controlador;
 
 import Modelo.*;
@@ -5,7 +6,6 @@ import Vista.VistaCineMas;
 import java.util.ArrayList;
 
 public class ControladorCineMas {
-
     private VistaCineMas vista = new VistaCineMas();
     private EntradaSalidaArchivos archivos = new EntradaSalidaArchivos();
 
@@ -15,14 +15,14 @@ public class ControladorCineMas {
     private ArrayList<ArrayList<String>> horarios;
     private ArrayList<ArrayList<String>> salas;
     private ArrayList<Snack> snacksDisponibles;
-    private ArrayList<Venta> registroVentas;
+    private ArrayList<Venta> registroVentas; 
 
     public ControladorCineMas() {
         registroVentas = new ArrayList<>();
 
         // Inicializamos vacíos y llenamos desde archivos
-        titulos = new String[]{"The Last Adventure", "La Casa Misteriosa", "Viaje al Espacio"};
-        precios = new double[]{7.5, 6.0, 8.0};
+        titulos = new String[3];
+        precios = new double[3];
         horarios = new ArrayList<>();
         salas = new ArrayList<>();
         snacksDisponibles = new ArrayList<>();
@@ -33,7 +33,7 @@ public class ControladorCineMas {
         archivos.leerSalas(salas);
         archivos.leerSnacks(snacksDisponibles);
 
-        // Crearmos objetos de tipo Pelicula 
+        // Creamos objetos de tipo Pelicula
         peliculas = new Pelicula[titulos.length];
         for (int i = 0; i < titulos.length; i++) {
             peliculas[i] = new Pelicula(titulos[i], horarios.get(i), salas.get(i), precios[i]);
@@ -61,10 +61,10 @@ public class ControladorCineMas {
 
         // Metodo para selccionar los snacks
         ArrayList<Snack> snacksComprados = new ArrayList<>();
-        while (true) {
+        while(true){
             vista.mostrarSnacksDisponibles(snacksDisponibles);
             int opcionSnack = vista.seleccionarSnack(snacksDisponibles.size() + 1);
-            if (opcionSnack == snacksDisponibles.size()) { // Opcion "Ninguno"
+            if(opcionSnack == snacksDisponibles.size()){ // Opcion "Ninguno"
                 break;
             }
             int cantidadSnack = vista.ingresarCantidadSnack();
@@ -83,22 +83,24 @@ public class ControladorCineMas {
 
         // Metodo para Registrar venta para historial
         registroVentas.add(venta);
-        archivos.guardarFacturaEnArchivo(venta, horarioElegido);
+        archivos.guardarFacturaEnArchivo(venta);
+        
+        
     }
 
     // Metodo para Aplicar descuentos según reglas definidas
-    private void aplicarDescuentos(Venta venta) {
+    private void aplicarDescuentos(Venta venta){
         double descuento = 0;
         String descripcion = "Ninguno";
 
         // Metodo que se encarga de dar un Descuento del 10% si compra 5 o más boletos
-        if (venta.getBoleto().getCantidad() >= 5) {
+        if(venta.getBoleto().getCantidad() >= 5){
             descuento = venta.getBoleto().calcularTotal() * 0.10;
             descripcion = "Descuento por compra de 5 o mas boletos";
         }
 
         // Metodo que se encarga de dar un Descuento extra por combo snacks y boletos
-        if (!venta.getSnacks().isEmpty() && venta.getBoleto().getCantidad() >= 3) {
+        if(!venta.getSnacks().isEmpty() && venta.getBoleto().getCantidad() >= 3){
             descuento += 2.0;
             descripcion += " + Descuento combo snacks y boletos";
         }

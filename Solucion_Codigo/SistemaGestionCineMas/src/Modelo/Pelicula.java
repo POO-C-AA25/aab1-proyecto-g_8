@@ -1,18 +1,18 @@
+
 package Modelo;
 
 import java.util.ArrayList;
 
 public class Pelicula {
-
     private String titulo;
     private ArrayList<String> horarios;
     private ArrayList<String> salas;
     private double precio;
-
-    public Pelicula() {
-
+    
+    public Pelicula(){
+    
     }
-
+    
     public Pelicula(String titulo, ArrayList<String> horarios, ArrayList<String> salas, double precio) {
         this.titulo = titulo;
         this.horarios = horarios;
@@ -36,3 +36,4 @@ public class Pelicula {
         return precio;
     }
 }
+

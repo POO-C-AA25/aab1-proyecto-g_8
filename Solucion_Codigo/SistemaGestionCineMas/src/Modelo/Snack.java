@@ -1,15 +1,15 @@
+
 package Modelo;
 
 public class Snack {
-
     private String nombre;
     private double precio;
     private int cantidad;
 
-    public Snack() {
-
+    public Snack(){
+        
     }
-
+    
     public Snack(String nombre, double precio, int cantidad) {
         this.nombre = nombre;
         this.precio = precio;
@@ -32,3 +32,4 @@ public class Snack {
         return cantidad;
     }
 }
+

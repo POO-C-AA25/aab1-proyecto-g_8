@@ -119,6 +119,7 @@ public class VistaCineMas {
         System.out.println("TOTAL A PAGAR: $" + total);
         System.out.println("----------------------------");
     }
+    
 }
 
 

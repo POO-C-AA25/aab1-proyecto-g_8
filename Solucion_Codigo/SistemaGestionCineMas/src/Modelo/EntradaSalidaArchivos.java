@@ -1,5 +1,5 @@
-package Modelo;
 
+package Modelo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,7 +8,7 @@ import java.util.Formatter;
 import java.util.Scanner;
 
 public class EntradaSalidaArchivos {
-
+    
     // Metodo para Leer los Titulos de un archivo
     public void leerTitulos(String[] titulos) {
         try {
@@ -24,14 +24,11 @@ public class EntradaSalidaArchivos {
             System.out.println(e.getMessage());
         }
     }
-
     // Metodo para Leer los Precios de un archivo
     public void leerPrecios(double[] precios) {
         try {
             Scanner objLecturaFile = new Scanner(new File("Cartelera.csv"));
-            if (objLecturaFile.hasNextLine()) {
-                objLecturaFile.nextLine();
-            }
+            if (objLecturaFile.hasNextLine()) objLecturaFile.nextLine();
             if (objLecturaFile.hasNextLine()) {
                 String[] partes = objLecturaFile.nextLine().split(",");
                 for (int i = 0; i < partes.length; i++) {
@@ -43,7 +40,6 @@ public class EntradaSalidaArchivos {
             System.out.println(e.getMessage());
         }
     }
-
     // Metodo para Leer los Horarios de un archivo
     public void leerHorarios(ArrayList<ArrayList<String>> horarios) {
         try {
@@ -61,7 +57,6 @@ public class EntradaSalidaArchivos {
             System.out.println(e.getMessage());
         }
     }
-
     // Metodo para Leer las Salas de un archivo
     public void leerSalas(ArrayList<ArrayList<String>> salas) {
         try {
@@ -79,7 +74,6 @@ public class EntradaSalidaArchivos {
             System.out.println(e.getMessage());
         }
     }
-
     // Metodo para Leer los Snacks de un archivo
     public void leerSnacks(ArrayList<Snack> snacks) {
         try {
@@ -93,9 +87,8 @@ public class EntradaSalidaArchivos {
             System.out.println(e.getMessage());
         }
     }
-
     // Metodo para guardar las Facturas en un archivo 
-    public void guardarFacturaEnArchivo(Venta venta, String nombreArchivo) {
+    public void guardarFacturaEnArchivo(Venta venta) {
         try {
             FileOutputStream fos = new FileOutputStream("RegistroVentas.txt", true);
             Formatter objPersistenciaFiles = new Formatter(fos);
@@ -137,4 +130,5 @@ public class EntradaSalidaArchivos {
             System.out.println("Error al guardar la factura: " + e.getMessage());
         }
     }
-}
+
+} 
